@@ -13,7 +13,7 @@ axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)  //-- Nasa API
     console.log("Hello Demo")
     console.log(response)
     const davey = x(response)
-    document.getElementById('root').appendChild(davey)
+    // document.getElementById('root').appendChild(davey)
   })
   .catch(
     console.log("Hello Planet")
