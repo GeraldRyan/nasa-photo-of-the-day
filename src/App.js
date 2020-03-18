@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import axios from 'axios'
 import SearchBear from './components/SearchBar/SearchBarContainer' // name change ok bc default
 import Card from './components/card/Card'
+import dummyData from './dummy-data'
+
 
 axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)  //-- Nasa API - need api_key
   .then(function (response)
@@ -31,6 +33,9 @@ const x = (obj) =>
 
 function App()
 {
+
+  const [data] = useState(dummyData[0])
+  console.log(`dummy data is ${data.data.explanation}`)
   return (
     <div className="App">
       {/*
@@ -40,8 +45,9 @@ function App()
         Read through the instructions in the README.md file to build your NASA
         app! Have fun 🚀!
       </p> */}
-      {/* <SearchBear /> */}
-      <Card />
+      {/* <SearchBear />
+       */}
+      <Card explanation={data.explanation}/>
 
     </div>
   );
