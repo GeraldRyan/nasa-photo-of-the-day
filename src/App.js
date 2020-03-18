@@ -47,7 +47,7 @@ function App()
       </p> */}
       {/* <SearchBear />
        */}
-      <Card explanation={data.explanation}/>
+      <Card explanation={data.data.explanation} src={data.data.url} alt={data.data.title}/>
 
     </div>
   );
