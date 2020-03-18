@@ -34,8 +34,8 @@ const x = (obj) =>
 function App()
 {
 
-  const [data] = useState(dummyData[0])
-  console.log(`dummy data is ${data.data.explanation}`)
+  const [data] = useState(dummyData)
+
   return (
     <div className="App">
       {/*
@@ -45,10 +45,11 @@ function App()
         Read through the instructions in the README.md file to build your NASA
         app! Have fun 🚀!
       </p> */}
-      {/* <SearchBear />
-       */}
-      <Card explanation={data.data.explanation} src={data.data.url} alt={data.data.title}/>
-
+      {
+        data.map(element => (
+          <Card explanation={element.data.explanation} src={element.data.url} alt={element.data.title} />
+        ))
+      }
     </div>
   );
 }
