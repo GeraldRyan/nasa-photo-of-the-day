@@ -1,57 +1,64 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from 'axios'
-import SearchBear from './components/SearchBar/SearchBarContainer' // name change ok bc default
-import Card from './components/card/Card'
+// import SearchBear from './components/SearchBar/SearchBarContainer' // name change ok bc default
+import Card from './components/card/Card.js'
 import dummyData from './dummy-data'
 
 
-axios.get(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`)  //-- Nasa API - need api_key
-  .then(function (response)
-  {
+// axios.get(`https://api.nasa.gov/planetary/apod?api_key=1KP7HFMm9RGHkhwkvYPFImgat3hNyWdt9cVkDdQa`)
+//   .then(response=>
+//   {
+    
+//     console.log("Hello Demo")
+//     console.log(response)
 
-    console.log("Hello Demo")
-    console.log(response)
-    const davey = x(response)
-    // document.getElementById('root').appendChild(davey)
-  })
-  .catch(
-    console.log("Hello Planet")
-  )
-
-// Make a component but have to refactor to be along the lines of JSX for React
-const x = (obj) =>
-{
-
-  const davey = document.createElement('div')
-  const image = document.createElement('img')
-  image.setAttribute('src', obj.data.url)
-  davey.appendChild(image)
-  return davey
-}
+//     // document.getElementById('root').appendChild(davey)
+//   })
+//   .catch(
+//     console.log("Hello Planet")
+//   )
+// My New API Key: 1KP7HFMm9RGHkhwkvYPFImgat3hNyWdt9cVkDdQa
 
 
 function App()
 {
+  const [data, setData] = useState('cherries');
 
-  const [data] = useState(dummyData)
+    useEffect(() =>
+    {
+      axios.get(`https://api.nasa.gov/planetary/apod?api_key=1KP7HFMm9RGHkhwkvYPFImgat3hNyWdt9cVkDdQa`)
+        .then( response =>
+        {
+          setData(response.data)
+          console.log(`this is my RESPONSE, called DATA ${data}`)
+          console.log(data)
+          console.log(response)
 
-  return (
-    <div className="App">
-      {/*
-      Notes => React Components (capitalized tags) get rendered if they are imported eponymously. 
-      They compile into React.createElement(), which is why the react library must be in scope from JSX code. For example <SearchBear /> compiles into React.createELement(SearchBear), corresponding toa a component defined or imported 
-      <p>
-        Read through the instructions in the README.md file to build your NASA
-        app! Have fun 🚀!
-      </p> */}
-      {
-        data.map(element => (
-          <Card explanation={element.data.explanation} src={element.data.url} alt={element.data.title} />
-        ))
-      }
-    </div>
-  );
+
+        })
+        .catch(console.log("Hello Dolly")
+        )
+    }, [])
+
+    return (
+      <div className="App">
+            {/* <Card explanation={data.explanation} src={data.url} alt={data.title} /> */}
+            <Card data={data} />
+            
+      </div>
+    );
+
+    // return (
+    //   <div className="App">
+
+    //     {
+    //       data.map(element => (
+    //         <Card explanation={element.data.explanation} src={element.data.url} alt={element.data.title} />
+    //       ))
+    //     }
+    //   </div>
+    // );
 }
 
 export default App;
