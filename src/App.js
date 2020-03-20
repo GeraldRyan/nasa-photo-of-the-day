@@ -23,21 +23,16 @@ import dummyData from './dummy-data'
 
 function App()
 {
-  const [data, setData] = useState('cherries');
+  const [data, setData] = useState({});
 
     useEffect(() =>
     {
       axios.get(`https://api.nasa.gov/planetary/apod?api_key=1KP7HFMm9RGHkhwkvYPFImgat3hNyWdt9cVkDdQa`)
         .then( response =>
         {
-          setData(response.data)
-          console.log(`this is my RESPONSE, called DATA ${data}`)
-          console.log(data)
-          console.log(response)
-
-
+          setData(response.data)  // this is set as empty object first time around. You get a one layer pass when peeking inside it. If you look too deep, undefined.property makes crash. So prevent first call when object set to {}  
         })
-        .catch(console.log("Hello Dolly")
+        .catch(console.log("You caught me")
         )
     }, [])
 
@@ -62,3 +57,5 @@ function App()
 }
 
 export default App;
+
+
