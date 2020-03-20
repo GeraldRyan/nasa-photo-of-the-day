@@ -16,7 +16,8 @@ img {
 
 .card-text {
   background-color: white;
-  color: black
+  color: black;
+  text-shadow: 1px 1px gray;
 }
 
 /* .card-header {
