@@ -16,15 +16,17 @@ const Card = (props) =>
       {console.log(props.data.data)}
       <C>
         <CardHeader>      <img src="https://www.nasa.gov/sites/all/themes/custom/nasatwo/images/nasa-logo.svg" alt="" />
-       NASA Picture of the Day
+       NASA Picture of the Day  <span>-></span>
         </CardHeader>
         <CardBody>
-          <CardTitle>Special Title Treatment</CardTitle>
+          <CardTitle>{props.data.title}</CardTitle>
           <CardText>{props.data.explanation}</CardText>
-          <img src={props.data.url} />
+          <div className="image-box">
+            <img class='main-img' src={props.data.url} />
+          </div>
         </CardBody>
         <a href="https://www.nasa.gov/careers"><Button>Apply Today</Button></a>
-        <CardFooter>Footer</CardFooter>
+        <CardFooter>{props.data.date}  {props.data.copyright}</CardFooter>
       </C>
     </div>
   )
